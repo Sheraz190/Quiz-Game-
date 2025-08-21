@@ -1,0 +1,156 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95cf8b2d0e88bc14389b832e0b17c8cb, type: 3}
+  m_Name: Levels Data
+  m_EditorClassIdentifier: 
+  levelData:
+  - levelType: 0
+    questions:
+    - QuestionText: What is the capital city of Pakistan?
+      answers:
+      - answer: Karachi
+        isCorrect: 0
+      - answer: Islamabad
+        isCorrect: 1
+    - QuestionText: Which is the longest river in Pakistan?
+      answers:
+      - answer: Jhelum
+        isCorrect: 0
+      - answer: Indus
+        isCorrect: 1
+  - levelType: 1
+    questions:
+    - QuestionText: In which year did Pakistan gain independence?
+      answers:
+      - answer: 1945
+        isCorrect: 0
+      - answer: 1947
+        isCorrect: 1
+    - QuestionText: '  Who was the first Governor-General of Pakistan?'
+      answers:
+      - answer: Ayub Khan
+        isCorrect: 0
+      - answer: Quaid-e-Azam Muhammad Ali Jinnah
+        isCorrect: 1
+  - levelType: 2
+    questions:
+    - QuestionText: Which city is called the "City of Lights"?
+      answers:
+      - answer: Karachi
+        isCorrect: 1
+      - answer: Lahore
+        isCorrect: 0
+    - QuestionText: Which city is famous for Badshahi Mosque?
+      answers:
+      - answer: ' Multan'
+        isCorrect: 0
+      - answer: Lahore
+        isCorrect: 1
+  - levelType: 3
+    questions:
+    - QuestionText: Which sport is most popular in Pakistan?
+      answers:
+      - answer: Hockey
+        isCorrect: 0
+      - answer: Cricket
+        isCorrect: 1
+    - QuestionText: "Who was Pakistan\u2019s cricket team captain in the 1992 World
+        Cup victory?"
+      answers:
+      - answer: Wasim Akram
+        isCorrect: 0
+      - answer: Imran Khan
+        isCorrect: 1
+  - levelType: 4
+    questions:
+    - QuestionText: Which is the national dress of Pakistan?
+      answers:
+      - answer: Shalwar Kameez
+        isCorrect: 1
+      - answer: 'Kurta Pajama '
+        isCorrect: 0
+    - QuestionText: Which festival is celebrated after Ramadan?
+      answers:
+      - answer: Eid-ul-Fitr
+        isCorrect: 1
+      - answer: 'Eid-ul-Adha '
+        isCorrect: 0
+  - levelType: 5
+    questions:
+    - QuestionText: Who is the current national currency issuer of Pakistan?
+      answers:
+      - answer: Ministry of Finance
+        isCorrect: 0
+      - answer: State Bank of Pakistan
+        isCorrect: 1
+    - QuestionText: Which is the current currency of Pakistan?
+      answers:
+      - answer: Rupee
+        isCorrect: 1
+      - answer: ' Dollar'
+        isCorrect: 0
+  - levelType: 6
+    questions:
+    - QuestionText: Minar-e-Pakistan is located in which city?
+      answers:
+      - answer: Lahore
+        isCorrect: 1
+      - answer: Multan
+        isCorrect: 0
+    - QuestionText: ' Faisal Mosque is located in which city?'
+      answers:
+      - answer: Islamabad
+        isCorrect: 1
+      - answer: Lahore
+        isCorrect: 0
+  - levelType: 7
+    questions:
+    - QuestionText: Who is known as the "Poet of the East"?
+      answers:
+      - answer: Mirza Ghalib
+        isCorrect: 0
+      - answer: Allama Iqbal
+        isCorrect: 1
+    - QuestionText: Who was the first female Prime Minister of Pakistan?
+      answers:
+      - answer: Benazir Bhutto
+        isCorrect: 1
+      - answer: Malala Yousafzai
+        isCorrect: 0
+  - levelType: 8
+    questions:
+    - QuestionText: Which is the main crop of Pakistan?
+      answers:
+      - answer: Wheat
+        isCorrect: 1
+      - answer: Coffee
+        isCorrect: 0
+    - QuestionText: Which is known as the "King of Fruits" in Pakistan?
+      answers:
+      - answer: Apple
+        isCorrect: 0
+      - answer: Mango
+        isCorrect: 1
+  - levelType: 9
+    questions:
+    - QuestionText: Which is the first motorway built in Pakistan?
+      answers:
+      - answer: ' M-3'
+        isCorrect: 0
+      - answer: M-2
+        isCorrect: 1
+    - QuestionText: Which car company manufactures "Mehran"?
+      answers:
+      - answer: Suzuki
+        isCorrect: 1
+      - answer: 'Kia '
+        isCorrect: 0
