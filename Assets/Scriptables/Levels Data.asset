@@ -15,13 +15,13 @@ MonoBehaviour:
   levelData:
   - levelType: 0
     questions:
-    - QuestionText: What is the capital city of Pakistan?
+    - questionText: 
       answers:
       - answer: Karachi
         isCorrect: 0
       - answer: Islamabad
         isCorrect: 1
-    - QuestionText: Which is the longest river in Pakistan?
+    - questionText: 
       answers:
       - answer: Jhelum
         isCorrect: 0
@@ -29,13 +29,13 @@ MonoBehaviour:
         isCorrect: 1
   - levelType: 1
     questions:
-    - QuestionText: In which year did Pakistan gain independence?
+    - questionText: 
       answers:
       - answer: 1945
         isCorrect: 0
       - answer: 1947
         isCorrect: 1
-    - QuestionText: '  Who was the first Governor-General of Pakistan?'
+    - questionText: 
       answers:
       - answer: Ayub Khan
         isCorrect: 0
@@ -43,13 +43,13 @@ MonoBehaviour:
         isCorrect: 1
   - levelType: 2
     questions:
-    - QuestionText: Which city is called the "City of Lights"?
+    - questionText: 
       answers:
       - answer: Karachi
         isCorrect: 1
       - answer: Lahore
         isCorrect: 0
-    - QuestionText: Which city is famous for Badshahi Mosque?
+    - questionText: 
       answers:
       - answer: ' Multan'
         isCorrect: 0
@@ -57,14 +57,13 @@ MonoBehaviour:
         isCorrect: 1
   - levelType: 3
     questions:
-    - QuestionText: Which sport is most popular in Pakistan?
+    - questionText: 
       answers:
       - answer: Hockey
         isCorrect: 0
       - answer: Cricket
         isCorrect: 1
-    - QuestionText: "Who was Pakistan\u2019s cricket team captain in the 1992 World
-        Cup victory?"
+    - questionText: 
       answers:
       - answer: Wasim Akram
         isCorrect: 0
@@ -72,13 +71,13 @@ MonoBehaviour:
         isCorrect: 1
   - levelType: 4
     questions:
-    - QuestionText: Which is the national dress of Pakistan?
+    - questionText: 
       answers:
       - answer: Shalwar Kameez
         isCorrect: 1
       - answer: 'Kurta Pajama '
         isCorrect: 0
-    - QuestionText: Which festival is celebrated after Ramadan?
+    - questionText: 
       answers:
       - answer: Eid-ul-Fitr
         isCorrect: 1
@@ -86,13 +85,13 @@ MonoBehaviour:
         isCorrect: 0
   - levelType: 5
     questions:
-    - QuestionText: Who is the current national currency issuer of Pakistan?
+    - questionText: 
       answers:
       - answer: Ministry of Finance
         isCorrect: 0
       - answer: State Bank of Pakistan
         isCorrect: 1
-    - QuestionText: Which is the current currency of Pakistan?
+    - questionText: 
       answers:
       - answer: Rupee
         isCorrect: 1
@@ -100,13 +99,13 @@ MonoBehaviour:
         isCorrect: 0
   - levelType: 6
     questions:
-    - QuestionText: Minar-e-Pakistan is located in which city?
+    - questionText: 
       answers:
       - answer: Lahore
         isCorrect: 1
       - answer: Multan
         isCorrect: 0
-    - QuestionText: ' Faisal Mosque is located in which city?'
+    - questionText: 
       answers:
       - answer: Islamabad
         isCorrect: 1
@@ -114,13 +113,13 @@ MonoBehaviour:
         isCorrect: 0
   - levelType: 7
     questions:
-    - QuestionText: Who is known as the "Poet of the East"?
+    - questionText: 
       answers:
       - answer: Mirza Ghalib
         isCorrect: 0
       - answer: Allama Iqbal
         isCorrect: 1
-    - QuestionText: Who was the first female Prime Minister of Pakistan?
+    - questionText: 
       answers:
       - answer: Benazir Bhutto
         isCorrect: 1
@@ -128,13 +127,61 @@ MonoBehaviour:
         isCorrect: 0
   - levelType: 8
     questions:
-    - QuestionText: Which is the main crop of Pakistan?
+    - questionText: wHAT IS THE WHAT?
       answers:
       - answer: Wheat
         isCorrect: 1
       - answer: Coffee
         isCorrect: 0
-    - QuestionText: Which is known as the "King of Fruits" in Pakistan?
+    - questionText: faMOUS CROP OF paKISTANI
+      answers:
+      - answer: Apple
+        isCorrect: 0
+      - answer: Mango
+        isCorrect: 1
+    - questionText: How are you?
+      answers:
+      - answer: Apple
+        isCorrect: 0
+      - answer: Mango
+        isCorrect: 1
+    - questionText: What is your name?
+      answers:
+      - answer: Apple
+        isCorrect: 0
+      - answer: Mango
+        isCorrect: 1
+    - questionText: What is your age?
+      answers:
+      - answer: Apple
+        isCorrect: 0
+      - answer: Mango
+        isCorrect: 1
+    - questionText: What is your bike number?
+      answers:
+      - answer: Apple
+        isCorrect: 0
+      - answer: Mango
+        isCorrect: 1
+    - questionText: What is your hobby?
+      answers:
+      - answer: Apple
+        isCorrect: 0
+      - answer: Mango
+        isCorrect: 1
+    - questionText: What is your school name?
+      answers:
+      - answer: Apple
+        isCorrect: 0
+      - answer: Mango
+        isCorrect: 1
+    - questionText: What is the capital of pakistan?
+      answers:
+      - answer: Apple
+        isCorrect: 0
+      - answer: Mango
+        isCorrect: 1
+    - questionText: What is the famous crop of pakistan?
       answers:
       - answer: Apple
         isCorrect: 0
@@ -142,13 +189,13 @@ MonoBehaviour:
         isCorrect: 1
   - levelType: 9
     questions:
-    - QuestionText: Which is the first motorway built in Pakistan?
+    - questionText: 
       answers:
       - answer: ' M-3'
         isCorrect: 0
       - answer: M-2
         isCorrect: 1
-    - QuestionText: Which car company manufactures "Mehran"?
+    - questionText: 
       answers:
       - answer: Suzuki
         isCorrect: 1

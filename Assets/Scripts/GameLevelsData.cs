@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+
 [Serializable]
 public enum LevelTypes
 {
@@ -16,17 +17,14 @@ public enum LevelTypes
     Cars = 9
 }
 
-
-
 [Serializable]
 public class Questions
 {
 
-   public  string QuestionText;
+    public string questionText;
     public List<Answers> answers;
 
 }
-
 
 [Serializable]
 public class Answers
@@ -42,10 +40,7 @@ public class LevelData
     public List<Questions> questions;
 }
 
-
-
 [CreateAssetMenu(fileName = "Levels Data", menuName = "Quiz Game/Levels Data")]
-
 
 public class GameLevelsData : ScriptableObject
 {
