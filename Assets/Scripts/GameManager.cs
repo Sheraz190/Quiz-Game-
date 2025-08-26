@@ -8,24 +8,26 @@ public class GameManager : MonoBehaviour
     #region Variables/ GameObjects
 
     public static GameManager Instance;
-    [SerializeField] private GameLevelsData _gameLevelData;
-    public LevelTypes _currentLevelType;
+    [SerializeField] private GameLevelsData gameLevelData;
+    public List<Questions> questionList = new List<Questions>();
+    private List<string> answerString = new List<string>();
+    public LevelTypes currentLevelType;
     private LevelData _level;
-    public List<Questions> _questionsList = new List<Questions>();
-    private List<string> _answerString = new List<string>();
     private int _currentQuestionNo = 1;
     #endregion
 
     private void Start()
     {
-        Instance = this;
+        if(Instance==null)
+        {
+           Instance = this;
+        }
     }
 
     public void GetType(LevelTypes levelType)
     {
-        _currentLevelType = levelType;
+        currentLevelType = levelType;
     }
-
 
     public void StartQuiz()
     {
@@ -35,18 +37,18 @@ public class GameManager : MonoBehaviour
 
     private void LoadQuestions()
     {
-        _questionsList.Clear();
-        _level = GetLevelData(_currentLevelType);
+        questionList.Clear();
+        _level = GetLevelData(currentLevelType);
         foreach (var ques in _level.questions)
         {
-            _questionsList.Add(ques);
+            questionList.Add(ques);
         }
     }
 
     private void GiveQuestion()
     {
-        string question = _questionsList[_currentQuestionNo-1].questionText;
-        List<string> answersArray = GetAnswerOfQuestion(_questionsList[_currentQuestionNo-1]);
+        string question = questionList[_currentQuestionNo-1].questionText;
+        List<string> answersArray = GetAnswerOfQuestion(questionList[_currentQuestionNo-1]);
         if (_currentQuestionNo < 11)
         {
             GamePlayPanel.Instance.ShowNextQuestion(question, answersArray);
@@ -87,14 +89,20 @@ public class GameManager : MonoBehaviour
 
     private void ResetAllData()
     {
-        _currentQuestionNo = 0;
-        _questionsList.Clear();
-        _answerString.Clear();
+        _currentQuestionNo = 1;
+        questionList.Clear();
+        answerString.Clear();
     }
+
+    public void RetryGame()
+    {
+        StartQuiz();
+    }
+
 
     private Answers SelectAnswer(string selectedAns)
     {
-        foreach (var ans in _questionsList[_currentQuestionNo-1].answers)
+        foreach (var ans in questionList[_currentQuestionNo-1].answers)
         {
             if (selectedAns == ans.answer)
             {
@@ -106,17 +114,17 @@ public class GameManager : MonoBehaviour
 
     public List<string> GetAnswerOfQuestion(Questions ques)
     {
-        _answerString.Clear();
+        answerString.Clear();
         foreach (var ans in ques.answers)
         {
-            _answerString.Add(ans.answer);
+            answerString.Add(ans.answer);
         }
-        return _answerString;
+        return answerString;
     }
 
     private LevelData GetLevelData(LevelTypes levelType)
     {
-        foreach (LevelData level in _gameLevelData.levelData)
+        foreach (LevelData level in gameLevelData.levelData)
         {
             if (level.levelType == levelType)
             {

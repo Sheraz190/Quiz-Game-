@@ -21,7 +21,6 @@ public class LevelsPanel : MonoBehaviour
             LevelButton lb = btn.GetComponent<LevelButton>();
             if (lb != null) _buttons.Add(lb);
         }
-
     }
 
     private void GetUnlockedLevels()
@@ -29,8 +28,6 @@ public class LevelsPanel : MonoBehaviour
         _unlockedLevels = SaveManager.Instance.GetUnlockedLevels();
     }
 
-    
-    
     public void SetUnlockLevels()
     {
         GetUnlockedLevels();

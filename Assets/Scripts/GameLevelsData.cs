@@ -20,10 +20,8 @@ public enum LevelTypes
 [Serializable]
 public class Questions
 {
-
     public string questionText;
     public List<Answers> answers;
-
 }
 
 [Serializable]

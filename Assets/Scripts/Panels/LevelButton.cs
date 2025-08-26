@@ -10,6 +10,7 @@ public class LevelButton : MonoBehaviour
     public void OnLevelSelected()
     {
         GameManager.Instance.GetType(levelType);
+        GameManager.Instance.StartQuiz();
     }
 
     public void SetupButton()

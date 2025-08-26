@@ -4,46 +4,63 @@ public class UIManager : MonoBehaviour
 {
     #region Variables/Game Objects 
     public static UIManager Instance;
-    [SerializeField] private GameObject _mainMenu;
-    [SerializeField] private GameObject _settingsMenu;
-    [SerializeField] private GameObject _blockScreen;
-    [SerializeField] private GameObject _levelSelectionScreen;
-    [SerializeField] private GameObject _gamePlayScreen;
-    [SerializeField] private GameObject _retryScreen;
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject blockScreen;
+    [SerializeField] private GameObject levelSelectionScreen;
+    [SerializeField] private GameObject gamePlayScreen;
+    [SerializeField] private GameObject retryScreen;
     #endregion
 
     private void Awake()
     {
-        Instance = this;
+        if(Instance==null)
+        {
+            Instance = this;
+        }
     }
+        
     public void OnSettingsButtonClick()
     {
-        _blockScreen.SetActive(true);
-        _settingsMenu.SetActive(true);
+        blockScreen.SetActive(true);
+        settingsMenu.SetActive(true);
     }
 
     public void OnSettingsCrossButtonClick()
     {
-        _settingsMenu.SetActive(false);
-        _blockScreen.SetActive(false);
+        settingsMenu.SetActive(false);
+        blockScreen.SetActive(false);
     }
 
     public void OnStartButtonClick()
     {
-        _mainMenu.SetActive(false);
-        _levelSelectionScreen.SetActive(true);
+        mainMenu.SetActive(false);
+        levelSelectionScreen.SetActive(true);
         LevelsPanel.Instance.SetUnlockLevels();
     }
 
     public void OnLevelButtonClicked()
     {
-        _levelSelectionScreen.SetActive(false);
-        _gamePlayScreen.SetActive(true);
+        levelSelectionScreen.SetActive(false);
+        gamePlayScreen.SetActive(true);
     }
 
     public void TurnOnRetryPanel()
     {
-        _gamePlayScreen.SetActive(false);
-        _retryScreen.SetActive(true);
+        gamePlayScreen.SetActive(false);
+        retryScreen.SetActive(true);
+    }
+    
+    public void OnRetryButtonClick()
+    {
+        retryScreen.SetActive(false);
+        gamePlayScreen.SetActive(true);
+        GameManager.Instance.RetryGame();
+    }
+
+    public void OnMainMenuClick()
+    {
+        retryScreen.SetActive(false);
+        levelSelectionScreen.SetActive(true);
     }
 }

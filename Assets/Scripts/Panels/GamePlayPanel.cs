@@ -7,11 +7,9 @@ public class GamePlayPanel : MonoBehaviour
 {
     #region Variables/GameObjects
     public static GamePlayPanel Instance;
-    private List<Questions> _questions = new List<Questions>();
-    private List<string> _options = new List<string>();
-    [SerializeField] private TextMeshProUGUI _quesText;
-    [SerializeField] private TextMeshProUGUI _levelName;
-    [SerializeField] private List<TextMeshProUGUI> _optionsText;
+    [SerializeField] private TextMeshProUGUI quesText;
+    [SerializeField] private TextMeshProUGUI levelName;
+    [SerializeField] private List<TextMeshProUGUI> optionsText;
     [SerializeField] private List<GameObject> buttons;
     #endregion
 
@@ -24,18 +22,18 @@ public class GamePlayPanel : MonoBehaviour
     }
     private void Start()
     {
-        GameManager.Instance.StartQuiz();
+        
     }
 
     public void ShowNextQuestion(string ques, List<string> options)
     {
-        _levelName.text = "" + GameManager.Instance._currentLevelType.ToString();
+        levelName.text = "" + GameManager.Instance.currentLevelType.ToString();
         ResetButtons();
-        _quesText.text = "" + ques;
+        quesText.text = "" + ques;
         for (int i = 0; i < options.Count; i++)
         {
             buttons[i].SetActive(true);
-            _optionsText[i].text = options[i];
+            optionsText[i].text = options[i];
         }
     }
 
@@ -44,7 +42,7 @@ public class GamePlayPanel : MonoBehaviour
         for (int i = 0; i < buttons.Count; i++)
         {
             buttons[i].SetActive(false);
-            _optionsText[i].text = " ";
+            optionsText[i].text = " ";
         }
     }
 
