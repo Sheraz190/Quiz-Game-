@@ -3,16 +3,25 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 public class LevelsPanel : MonoBehaviour
 {
-    #region Variables/Game Objects
+    #region Variables
     public static LevelsPanel Instance;
-    [SerializeField] private List<Button> _levelButtons;
-    [SerializeField] private List<Image> _buttonImages;
+    [SerializeField] private List<Button> levelButtons;
+    private List<LevelButton> _buttons = new List<LevelButton>();
     private int _unlockedLevels;
     #endregion
 
     private void Awake()
     {
-        Instance = this;
+        if(Instance==null)
+        {
+            Instance = this;
+        }
+        foreach (Button btn in levelButtons)
+        {
+            LevelButton lb = btn.GetComponent<LevelButton>();
+            if (lb != null) _buttons.Add(lb);
+        }
+
     }
 
     private void GetUnlockedLevels()
@@ -20,6 +29,8 @@ public class LevelsPanel : MonoBehaviour
         _unlockedLevels = SaveManager.Instance.GetUnlockedLevels();
     }
 
+    
+    
     public void SetUnlockLevels()
     {
         GetUnlockedLevels();
@@ -27,12 +38,12 @@ public class LevelsPanel : MonoBehaviour
         {
             if (i < _unlockedLevels)
             {
-                _levelButtons[i].interactable = true;
-                _buttonImages[i].fillCenter = false;
+                levelButtons[i].interactable = true;
             }
             else
             {
-                _levelButtons[i].interactable = false;
+                levelButtons[i].interactable = false;
+                _buttons[i].SetupButton();
             }
         }
     }

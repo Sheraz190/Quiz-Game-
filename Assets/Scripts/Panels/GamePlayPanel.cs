@@ -17,14 +17,15 @@ public class GamePlayPanel : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
     }
     private void Start()
     {
         GameManager.Instance.StartQuiz();
     }
-
-   
 
     public void ShowNextQuestion(string ques, List<string> options)
     {
@@ -49,9 +50,7 @@ public class GamePlayPanel : MonoBehaviour
 
     public void OnAnswerClicked(Button clickedButton)
     {
-        
         string selectedText = clickedButton.GetComponentInChildren<TextMeshProUGUI>().text;
         GameManager.Instance.OnAnswerSelected(selectedText);
-        
     }
 }
