@@ -8,6 +8,4 @@ public class LevelButton : MonoBehaviour
     {
         GameManager.Instance.GetType(levelType);
     }
-
-
 }

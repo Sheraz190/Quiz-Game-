@@ -24,8 +24,6 @@ public class GamePlayPanel : MonoBehaviour
         GameManager.Instance.StartQuiz();
     }
 
-   
-
     public void ShowNextQuestion(string ques, List<string> options)
     {
         _levelName.text = "" + GameManager.Instance._currentLevelType.ToString();
