@@ -20,16 +20,12 @@ public class GamePlayPanel : MonoBehaviour
             Instance = this;
         }
     }
-    private void Start()
-    {
-        
-    }
 
-    public void ShowNextQuestion(string ques, List<string> options)
+    public void ShowNextQuestion(string ques, List<string> options,int num)
     {
         levelName.text = "" + GameManager.Instance.currentLevelType.ToString();
         ResetButtons();
-        quesText.text = "" + ques;
+        quesText.text =num+".  "+ "" + ques;
         for (int i = 0; i < options.Count; i++)
         {
             buttons[i].SetActive(true);

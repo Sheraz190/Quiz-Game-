@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject levelSelectionScreen;
     [SerializeField] private GameObject gamePlayScreen;
     [SerializeField] private GameObject retryScreen;
+    [SerializeField] private GameObject nextLevelScreen;
+    [SerializeField] private GameObject exitScreen; 
     #endregion
 
     private void Awake()
@@ -60,7 +62,34 @@ public class UIManager : MonoBehaviour
 
     public void OnMainMenuClick()
     {
+        exitScreen.SetActive(false);
         retryScreen.SetActive(false);
+        nextLevelScreen.SetActive(false);
         levelSelectionScreen.SetActive(true);
+        LevelsPanel.Instance.SetUnlockLevels();
+    }
+
+    public void OnLevelCompletedScreen()
+    {
+        gamePlayScreen.SetActive(false);
+        nextLevelScreen.SetActive(true);
+    }
+
+    public void OnNextButtonClick()
+    {
+        nextLevelScreen.SetActive(false);
+        gamePlayScreen.SetActive(true);
+        GameManager.Instance.StartQuiz();
+    }
+
+    public void OnGameComplete()
+    {
+        gamePlayScreen.SetActive(false);
+        exitScreen.SetActive(true);
+    }
+
+    public void OnExitButtonClick()
+    {
+        Application.Quit();
     }
 }

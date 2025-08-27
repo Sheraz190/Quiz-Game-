@@ -36,6 +36,7 @@ public class LevelData
 {
     public LevelTypes levelType;
     public List<Questions> questions;
+    public int levelNumber;
 }
 
 [CreateAssetMenu(fileName = "Levels Data", menuName = "Quiz Game/Levels Data")]

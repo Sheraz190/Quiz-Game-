@@ -10,28 +10,35 @@ public class SaveManager : MonoBehaviour
 
     #endregion
 
+    private void Awake()
+    {
+        if(Instance==null)
+        {
+            Instance = this;
+        }
+    }
+
     private void Start()
     {
-        Instance = this;
-        SetUnlockedLevel();
+        SetUnlockedLevel(10);
     }
 
     public void SaveAudioStatus()
     {
         PlayerPrefs.SetInt(_musicStatus, 0);
         PlayerPrefs.Save();
-        AddLogger.DisplayLog("Audi updated");
+        AddLogger.DisplayLog("Audio updated");
     }
 
     public int GetAudioStatus()
     {
-        int audioStatus = PlayerPrefs.GetInt(_musicStatus, 1);
+        int audioStatus = PlayerPrefs.GetInt(_musicStatus, 4);
         return audioStatus;
     }
 
-    public void SetUnlockedLevel()
+    public void SetUnlockedLevel(int num)
     {
-        PlayerPrefs.SetInt(_unlockedLEvels, 7);
+        PlayerPrefs.SetInt(_unlockedLEvels, num);
         PlayerPrefs.Save();
     }
 
@@ -40,5 +47,4 @@ public class SaveManager : MonoBehaviour
         int latestUnlockedLevel = PlayerPrefs.GetInt(_unlockedLEvels, 0);
         return latestUnlockedLevel;
     }
-
 }

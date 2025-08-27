@@ -36,11 +36,12 @@ public class LevelsPanel : MonoBehaviour
             if (i < _unlockedLevels)
             {
                 levelButtons[i].interactable = true;
+                _buttons[i].SetUpUnlockButton();
             }
             else
             {
                 levelButtons[i].interactable = false;
-                _buttons[i].SetupButton();
+                _buttons[i].SetupLockButton();
             }
         }
     }

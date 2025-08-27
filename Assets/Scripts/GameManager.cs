@@ -6,15 +6,17 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour
 {
     #region Variables/ GameObjects
-
     public static GameManager Instance;
     [SerializeField] private GameLevelsData gameLevelData;
     public List<Questions> questionList = new List<Questions>();
     private List<string> answerString = new List<string>();
     public LevelTypes currentLevelType;
     private LevelData _level;
+    private List<Questions> _tempQuestions = new List<Questions>();
     private int _currentQuestionNo = 1;
-    #endregion
+    private int _currentLevelNumber;
+    private Questions _currentQuestion;
+ #endregion
 
     private void Start()
     {
@@ -29,8 +31,14 @@ public class GameManager : MonoBehaviour
         currentLevelType = levelType;
     }
 
+    public void GetCurrentLevelNumber(int num)
+    {
+        _currentLevelNumber = num;
+    }
+
     public void StartQuiz()
     {
+        ResetAllData();
         LoadQuestions();
         GiveQuestion();
     }
@@ -42,16 +50,18 @@ public class GameManager : MonoBehaviour
         foreach (var ques in _level.questions)
         {
             questionList.Add(ques);
+            _tempQuestions.Add(ques);
         }
     }
 
     private void GiveQuestion()
     {
         string question = questionList[_currentQuestionNo-1].questionText;
-        List<string> answersArray = GetAnswerOfQuestion(questionList[_currentQuestionNo-1]);
+        List<string> answersArray = GetAnswerOfQuestion(questionList[_currentQuestionNo - 1]);
+        
         if (_currentQuestionNo < 11)
         {
-            GamePlayPanel.Instance.ShowNextQuestion(question, answersArray);
+            GamePlayPanel.Instance.ShowNextQuestion(question, answersArray, _currentQuestionNo);
         }
     }
 
@@ -62,8 +72,7 @@ public class GameManager : MonoBehaviour
         {
             if(_currentQuestionNo==10)
             {
-                AddLogger.DisplayLog("Level Completed");
-                OnWrongAnswer();
+                OnLevelCompleted();
                 return;
             }
             OnCorrectAnswer();
@@ -74,9 +83,42 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void OnNextLevel()
+    {
+        ResetAllData();
+        GetNextLevelType();
+    }
+
+    private void GetNextLevelType()
+    {
+        for(int i=0;i<gameLevelData.levelData.Count;i++)
+        {
+            if(currentLevelType==gameLevelData.levelData[i].levelType)
+            {
+                currentLevelType = gameLevelData.levelData[i + 1].levelType;
+                AddLogger.DisplayLog("Current ttpe is: " + currentLevelType);
+                return;
+            }
+        }
+    }
+
+    private void OnLevelCompleted()
+    {
+        _currentLevelNumber++;
+        if(_currentLevelNumber>10)
+        {
+            AddLogger.DisplayLog("Level Ends Game finish");
+            UIManager.Instance.OnGameComplete();
+            return;
+        }
+        AddLogger.DisplayLog("Level Completed");
+        SaveManager.Instance.SetUnlockedLevel(_currentLevelNumber);
+        UIManager.Instance.OnLevelCompletedScreen();
+        OnNextLevel();
+    }
+
     private void OnCorrectAnswer()
     {
-        AddLogger.DisplayLog("question number: " + _currentQuestionNo);
         _currentQuestionNo++;
         GiveQuestion();
     }
@@ -98,7 +140,6 @@ public class GameManager : MonoBehaviour
     {
         StartQuiz();
     }
-
 
     private Answers SelectAnswer(string selectedAns)
     {
