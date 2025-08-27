@@ -11,8 +11,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject gamePlayScreen;
     [SerializeField] private GameObject retryScreen;
     [SerializeField] private GameObject nextLevelScreen;
-    [SerializeField] private GameObject exitScreen; 
+    [SerializeField] private GameObject exitScreen;
     #endregion
+
+   
 
     private void Awake()
     {
@@ -91,5 +93,28 @@ public class UIManager : MonoBehaviour
     public void OnExitButtonClick()
     {
         Application.Quit();
+    }
+
+    private void TurnAllScreensOff()
+    {
+        mainMenu.SetActive(false);
+        levelSelectionScreen.SetActive(false);
+        gamePlayScreen.SetActive(false);
+        retryScreen.SetActive(false);
+        nextLevelScreen.SetActive(false);
+        exitScreen.SetActive(false);
+        settingsMenu.SetActive(false);
+    }
+
+    public void TurnLevelScreenOn()
+    {
+        TurnAllScreensOff();
+        levelSelectionScreen.SetActive(true);
+    }
+
+    public void TurnStartScreenOn()
+    {
+        TurnAllScreensOff();
+        mainMenu.SetActive(true);
     }
 }
