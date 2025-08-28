@@ -13,7 +13,6 @@ public class LevelButton : MonoBehaviour
         GameManager.Instance.GetType(levelType);
         GameManager.Instance.StartQuiz();
         GameManager.Instance.GetCurrentLevelNumber(levelNumber);
-        AddLogger.DisplayLog("Level type  in button: " + levelType);
     }
 
     public void SetupLockButton()
