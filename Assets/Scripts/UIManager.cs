@@ -69,7 +69,7 @@ public class UIManager : MonoBehaviour
         nextLevelScreen.SetActive(true);
     }
 
-    public void OnNextButtonClick()
+    public void OnNextLevelButtonClick()
     {
         nextLevelScreen.SetActive(false);
         GameManager.Instance.StartQuiz();

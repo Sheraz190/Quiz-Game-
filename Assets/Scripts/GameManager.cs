@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     private Questions _currentQuestion;
  #endregion
 
-    private void Start()
+    private void Awake()
     {
         if(Instance==null)
         {
@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
         {
             OnWrongAnswer();
         }
+        GamePlayPanel.Instance.TurnNextButtonOff();
     }
 
     private void OnNextLevel()
@@ -96,7 +97,6 @@ public class GameManager : MonoBehaviour
             if(currentLevelType==gameLevelData.levelData[i].levelType)
             {
                 currentLevelType = gameLevelData.levelData[i + 1].levelType;
-                AddLogger.DisplayLog("Current ttpe is: " + currentLevelType);
                 return;
             }
         }
@@ -111,7 +111,6 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.OnGameComplete();
             return;
         }
-        AddLogger.DisplayLog("Level Completed");
         SaveManager.Instance.SetUnlockedLevel(_currentLevelNumber);
         UIManager.Instance.OnLevelCompletedScreen();
         OnNextLevel();

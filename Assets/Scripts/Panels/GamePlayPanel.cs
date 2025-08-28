@@ -11,6 +11,8 @@ public class GamePlayPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelName;
     [SerializeField] private List<TextMeshProUGUI> optionsText;
     [SerializeField] private List<GameObject> buttons;
+    [SerializeField] private Button nextButton;
+    private string _selectedText;
     #endregion
 
     private void Awake()
@@ -19,6 +21,11 @@ public class GamePlayPanel : MonoBehaviour
         {
             Instance = this;
         }
+    }
+
+    private void Start()
+    {
+        TurnNextButtonOff();
     }
 
     public void ShowNextQuestion(string ques, List<string> options,int num)
@@ -39,12 +46,36 @@ public class GamePlayPanel : MonoBehaviour
         {
             buttons[i].SetActive(false);
             optionsText[i].text = " ";
+            
+        }
+    }
+
+    private void ResetButtonImages()
+    {
+        foreach(var button in buttons)
+        {
+            Image buttonImage = button.GetComponent<Image>();
+            buttonImage.fillCenter = true;
         }
     }
 
     public void OnAnswerClicked(Button clickedButton)
     {
-        string selectedText = clickedButton.GetComponentInChildren<TextMeshProUGUI>().text;
-        GameManager.Instance.OnAnswerSelected(selectedText);
+        ResetButtonImages();
+        _selectedText = clickedButton.GetComponentInChildren<TextMeshProUGUI>().text;
+        nextButton.interactable = true;
+        Image buttonImage = clickedButton.GetComponent<Image>();
+        buttonImage.fillCenter = false;
     }
+
+    public void OnNextButtonClick()
+    { 
+        GameManager.Instance.OnAnswerSelected(_selectedText);
+        ResetButtonImages();
+    }
+
+    public void TurnNextButtonOff()
+    {
+        nextButton.interactable = false;
+    }    
 }
