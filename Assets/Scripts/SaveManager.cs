@@ -20,7 +20,7 @@ public class SaveManager : MonoBehaviour
 
     private void Start()
     {
-        SetUnlockedLevel(6);
+        SetUnlockedLevel(10);
     }
 
     public void SaveAudioStatus()

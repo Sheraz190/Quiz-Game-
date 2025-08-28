@@ -6,7 +6,6 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject settingsMenu;
-    [SerializeField] private GameObject blockScreen;
     [SerializeField] private GameObject levelSelectionScreen;
     [SerializeField] private GameObject gamePlayScreen;
     [SerializeField] private GameObject retryScreen;
@@ -26,14 +25,12 @@ public class UIManager : MonoBehaviour
         
     public void OnSettingsButtonClick()
     {
-        blockScreen.SetActive(true);
         settingsMenu.SetActive(true);
     }
 
     public void OnSettingsCrossButtonClick()
     {
         settingsMenu.SetActive(false);
-        blockScreen.SetActive(false);
     }
 
     public void OnStartButtonClick()
@@ -51,42 +48,35 @@ public class UIManager : MonoBehaviour
 
     public void TurnOnRetryPanel()
     {
-        gamePlayScreen.SetActive(false);
         retryScreen.SetActive(true);
     }
     
     public void OnRetryButtonClick()
     {
         retryScreen.SetActive(false);
-        gamePlayScreen.SetActive(true);
         GameManager.Instance.RetryGame();
     }
 
     public void OnMainMenuClick()
     {
-        exitScreen.SetActive(false);
-        retryScreen.SetActive(false);
-        nextLevelScreen.SetActive(false);
+        TurnAllScreensOff();
         levelSelectionScreen.SetActive(true);
         LevelsPanel.Instance.SetUnlockLevels();
     }
 
     public void OnLevelCompletedScreen()
-    {
-        gamePlayScreen.SetActive(false);
+    { 
         nextLevelScreen.SetActive(true);
     }
 
     public void OnNextButtonClick()
     {
         nextLevelScreen.SetActive(false);
-        gamePlayScreen.SetActive(true);
         GameManager.Instance.StartQuiz();
     }
 
     public void OnGameComplete()
     {
-        gamePlayScreen.SetActive(false);
         exitScreen.SetActive(true);
     }
 
