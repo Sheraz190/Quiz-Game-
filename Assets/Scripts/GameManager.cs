@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
@@ -15,14 +16,14 @@ public class GameManager : MonoBehaviour
     private List<Questions> _tempQuestions = new List<Questions>();
     private int _currentQuestionNo = 1;
     private int _currentLevelNumber;
-    private Questions _currentQuestion;
- #endregion
+    private int _correctAnswers;
+    #endregion
 
     private void Awake()
     {
-        if(Instance==null)
+        if (Instance == null)
         {
-           Instance = this;
+            Instance = this;
         }
     }
 
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
     private void LoadQuestions()
     {
         questionList.Clear();
+        _tempQuestions.Clear();
         _level = GetLevelData(currentLevelType);
         foreach (var ques in _level.questions)
         {
@@ -56,11 +58,10 @@ public class GameManager : MonoBehaviour
 
     private void GiveQuestion()
     {
-        string question = questionList[_currentQuestionNo-1].questionText;
-        List<string> answersArray = GetAnswerOfQuestion(questionList[_currentQuestionNo - 1]);
-        
         if (_currentQuestionNo < 11)
         {
+            string question = questionList[_currentQuestionNo - 1].questionText;
+            List<string> answersArray = GetAnswerOfQuestion(questionList[_currentQuestionNo - 1]);
             GamePlayPanel.Instance.ShowNextQuestion(question, answersArray, _currentQuestionNo);
         }
     }
@@ -70,7 +71,7 @@ public class GameManager : MonoBehaviour
         Answers ans = SelectAnswer(selectedAnswer);
         if (ans.isCorrect)
         {
-            if(_currentQuestionNo==10)
+            if (_currentQuestionNo == 10)
             {
                 OnLevelCompleted();
                 return;
@@ -79,6 +80,11 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            if (_currentQuestionNo == 10)
+            {
+                OnLevelCompleted();
+                return;
+            }
             OnWrongAnswer();
         }
         GamePlayPanel.Instance.TurnNextButtonOff();
@@ -92,9 +98,9 @@ public class GameManager : MonoBehaviour
 
     private void GetNextLevelType()
     {
-        for(int i=0;i<gameLevelData.levelData.Count;i++)
+        for (int i = 0; i < gameLevelData.levelData.Count; i++)
         {
-            if(currentLevelType==gameLevelData.levelData[i].levelType)
+            if (currentLevelType == gameLevelData.levelData[i].levelType)
             {
                 currentLevelType = gameLevelData.levelData[i + 1].levelType;
                 return;
@@ -104,8 +110,13 @@ public class GameManager : MonoBehaviour
 
     private void OnLevelCompleted()
     {
+        if (_correctAnswers < 6)
+        {
+            UIManager.Instance.TurnOnRetryPanel();
+            return;
+        }
         _currentLevelNumber++;
-        if(_currentLevelNumber>10)
+        if (_currentLevelNumber > 10)
         {
             AddLogger.DisplayLog("Level Ends Game finish");
             UIManager.Instance.OnGameComplete();
@@ -120,12 +131,14 @@ public class GameManager : MonoBehaviour
     {
         _currentQuestionNo++;
         GiveQuestion();
+        _correctAnswers++;
+       
     }
 
     private void OnWrongAnswer()
     {
-        UIManager.Instance.TurnOnRetryPanel();
-        ResetAllData();
+        _currentQuestionNo++;
+        GiveQuestion();
     }
 
     private void ResetAllData()
@@ -133,6 +146,7 @@ public class GameManager : MonoBehaviour
         _currentQuestionNo = 1;
         questionList.Clear();
         answerString.Clear();
+        _correctAnswers = 0;
     }
 
     public void RetryGame()
@@ -142,7 +156,7 @@ public class GameManager : MonoBehaviour
 
     private Answers SelectAnswer(string selectedAns)
     {
-        foreach (var ans in questionList[_currentQuestionNo-1].answers)
+        foreach (var ans in questionList[_currentQuestionNo - 1].answers)
         {
             if (selectedAns == ans.answer)
             {

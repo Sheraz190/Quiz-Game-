@@ -1,7 +1,9 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class GamePlayPanel : MonoBehaviour
 {
@@ -12,7 +14,9 @@ public class GamePlayPanel : MonoBehaviour
     [SerializeField] private List<TextMeshProUGUI> optionsText;
     [SerializeField] private List<GameObject> buttons;
     [SerializeField] private Button nextButton;
+    private Vector2 _buttonRt;
     private string _selectedText;
+    public Button selectedButton;
     #endregion
 
     private void Awake()
@@ -28,11 +32,11 @@ public class GamePlayPanel : MonoBehaviour
         TurnNextButtonOff();
     }
 
-    public void ShowNextQuestion(string ques, List<string> options,int num)
+    public void ShowNextQuestion(string ques, List<string> options, int num)
     {
         levelName.text = "" + GameManager.Instance.currentLevelType.ToString();
         ResetButtons();
-        quesText.text =num+".  "+ "" + ques;
+        quesText.text = num + ".  " + "" + ques;
         for (int i = 0; i < options.Count; i++)
         {
             buttons[i].SetActive(true);
@@ -46,16 +50,15 @@ public class GamePlayPanel : MonoBehaviour
         {
             buttons[i].SetActive(false);
             optionsText[i].text = " ";
-            
         }
     }
 
     private void ResetButtonImages()
     {
-        foreach(var button in buttons)
+        foreach (var button in buttons)
         {
             Image buttonImage = button.GetComponent<Image>();
-            buttonImage.fillCenter = true;
+            buttonImage.color = Color.white;
         }
     }
 
@@ -65,17 +68,33 @@ public class GamePlayPanel : MonoBehaviour
         _selectedText = clickedButton.GetComponentInChildren<TextMeshProUGUI>().text;
         nextButton.interactable = true;
         Image buttonImage = clickedButton.GetComponent<Image>();
-        buttonImage.fillCenter = false;
+        buttonImage.color = Color.black;
+        selectedButton = clickedButton;
     }
 
     public void OnNextButtonClick()
-    { 
+    {
+        OnClick(selectedButton);
+        StartCoroutine(AfterNextButton());
+    }
+
+    private IEnumerator AfterNextButton()
+    {
+        yield return new WaitForSeconds(0.25f);
         GameManager.Instance.OnAnswerSelected(_selectedText);
         ResetButtonImages();
+    }
+
+    public void OnClick(Button myButton)
+    {
+        Image btnImg = myButton.GetComponent<Image>();
+        Sequence seq = DOTween.Sequence();
+        seq.Append(myButton.transform.DOScale(new Vector3(1.2f, 2.0f, 0), 0.15f));
+        seq.Append(myButton.transform.DOScale(new Vector3(1.0f, 1.0f, 0), 0.075f));
     }
 
     public void TurnNextButtonOff()
     {
         nextButton.interactable = false;
-    }    
+    }
 }
