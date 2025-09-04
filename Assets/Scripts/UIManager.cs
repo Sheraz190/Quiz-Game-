@@ -13,8 +13,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject exitScreen;
     #endregion
 
-   
-
     private void Awake()
     {
         if(Instance==null)
@@ -100,6 +98,7 @@ public class UIManager : MonoBehaviour
     {
         TurnAllScreensOff();
         levelSelectionScreen.SetActive(true);
+        LevelsPanel.Instance.SetUnlockLevels();
     }
 
     public void TurnStartScreenOn()

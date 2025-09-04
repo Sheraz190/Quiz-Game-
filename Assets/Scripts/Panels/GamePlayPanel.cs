@@ -14,7 +14,9 @@ public class GamePlayPanel : MonoBehaviour
     [SerializeField] private List<TextMeshProUGUI> optionsText;
     [SerializeField] private List<GameObject> buttons;
     [SerializeField] private Button nextButton;
-    private Vector2 _buttonRt;
+    [SerializeField] private GameObject correctCheckBox;
+    [SerializeField] private GameObject wrongCheckBox;
+    [SerializeField] private TextMeshProUGUI queNoText;
     private string _selectedText;
     public Button selectedButton;
     #endregion
@@ -36,7 +38,9 @@ public class GamePlayPanel : MonoBehaviour
     {
         levelName.text = "" + GameManager.Instance.currentLevelType.ToString();
         ResetButtons();
-        quesText.text = num + ".  " + "" + ques;
+        queNoText.text = " ";
+        queNoText.text = ""+num;
+        quesText.text = ques;
         for (int i = 0; i < options.Count; i++)
         {
             buttons[i].SetActive(true);
@@ -59,7 +63,10 @@ public class GamePlayPanel : MonoBehaviour
         {
             Image buttonImage = button.GetComponent<Image>();
             buttonImage.color = Color.white;
+            TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
+            buttonText.color = Color.red;
         }
+        LockButtons(true);
     }
 
     public void OnAnswerClicked(Button clickedButton)
@@ -68,7 +75,9 @@ public class GamePlayPanel : MonoBehaviour
         _selectedText = clickedButton.GetComponentInChildren<TextMeshProUGUI>().text;
         nextButton.interactable = true;
         Image buttonImage = clickedButton.GetComponent<Image>();
-        buttonImage.color = Color.black;
+        TextMeshProUGUI buttonText = clickedButton.GetComponentInChildren<TextMeshProUGUI>();
+        buttonImage.color = Color.red;
+        buttonText.color = Color.white;
         selectedButton = clickedButton;
     }
 
@@ -80,6 +89,7 @@ public class GamePlayPanel : MonoBehaviour
 
     private IEnumerator AfterNextButton()
     {
+        LockButtons(false);
         yield return new WaitForSeconds(0.25f);
         GameManager.Instance.OnAnswerSelected(_selectedText);
         ResetButtonImages();
@@ -87,12 +97,34 @@ public class GamePlayPanel : MonoBehaviour
 
     public void OnClick(Button myButton)
     {
-        Image btnImg = myButton.GetComponent<Image>();
         Sequence seq = DOTween.Sequence();
         seq.Append(myButton.transform.DOScale(new Vector3(1.2f, 2.0f, 0), 0.15f));
         seq.Append(myButton.transform.DOScale(new Vector3(1.0f, 1.0f, 0), 0.075f));
     }
 
+    public void MoveCheckBox(bool condition)
+    {
+        if(condition)
+        {
+            correctCheckBox.SetActive(true);
+            return;
+        }
+        wrongCheckBox.SetActive(true);
+    }
+
+    public void ResetCheckBox()
+    {
+        correctCheckBox.SetActive(false);
+        wrongCheckBox.SetActive(false);
+    }
+
+    private void LockButtons(bool Condition)
+    {
+        foreach (var button in buttons)
+        {
+            button.GetComponent<Button>().interactable = Condition;
+        }
+    }
     public void TurnNextButtonOff()
     {
         nextButton.interactable = false;

@@ -129,18 +129,32 @@ public class GameManager : MonoBehaviour
 
     private void OnCorrectAnswer()
     {
+        GamePlayPanel.Instance.MoveCheckBox(true);
+        StartCoroutine(CorrectAnswerTimer());
+    }
+
+    private IEnumerator CorrectAnswerTimer()
+    {
+        yield return new WaitForSeconds(1.0f);
         _currentQuestionNo++;
         GiveQuestion();
         _correctAnswers++;
-       
+        GamePlayPanel.Instance.ResetCheckBox();
     }
 
     private void OnWrongAnswer()
     {
-        _currentQuestionNo++;
-        GiveQuestion();
+        GamePlayPanel.Instance.MoveCheckBox(false);
+        StartCoroutine(WrongAnswerTimer());
     }
 
+    private IEnumerator WrongAnswerTimer()
+    {
+        yield return new WaitForSeconds(1.0f);
+        _currentQuestionNo++;
+        GiveQuestion();
+        GamePlayPanel.Instance.ResetCheckBox();
+    }
     private void ResetAllData()
     {
         _currentQuestionNo = 1;

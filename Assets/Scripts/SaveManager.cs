@@ -20,14 +20,16 @@ public class SaveManager : MonoBehaviour
 
     private void Start()
     {
-        SetUnlockedLevel(10);
+        if(!PlayerPrefs.HasKey(_unlockedLEvels))
+        {
+            SetUnlockedLevel(1);
+        }
     }
 
     public void SaveAudioStatus()
     {
         PlayerPrefs.SetInt(_musicStatus, 0);
         PlayerPrefs.Save();
-        AddLogger.DisplayLog("Audio updated");
     }
 
     public int GetAudioStatus()
