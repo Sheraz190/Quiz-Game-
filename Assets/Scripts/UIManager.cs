@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 public class UIManager : MonoBehaviour
 {
     #region Variables/Game Objects 
@@ -11,6 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject retryScreen;
     [SerializeField] private GameObject nextLevelScreen;
     [SerializeField] private GameObject exitScreen;
+    [SerializeField] private List<GameObject> stars = new List<GameObject>();
     #endregion
 
     private void Awake()
@@ -52,6 +54,7 @@ public class UIManager : MonoBehaviour
     public void OnRetryButtonClick()
     {
         retryScreen.SetActive(false);
+        nextLevelScreen.SetActive(false);
         GameManager.Instance.RetryGame();
     }
 
@@ -70,6 +73,7 @@ public class UIManager : MonoBehaviour
     public void OnNextLevelButtonClick()
     {
         nextLevelScreen.SetActive(false);
+        GameManager.Instance.OnNextLevel();
         GameManager.Instance.StartQuiz();
     }
 
@@ -106,4 +110,28 @@ public class UIManager : MonoBehaviour
         TurnAllScreensOff();
         mainMenu.SetActive(true);
     }
+
+    public void Setcolors(int num)
+    {
+        AddLogger.DisplayLog("MEthod called");
+        for(int i=0;i<3;i++)
+        {
+            if(i<num)
+            {
+                AddLogger.DisplayLog("MEthod called");
+                Image img = stars[i].GetComponent<Image>();
+                img.color = Color.red;
+            }
+            else
+            {
+                Image img = stars[i].GetComponent<Image>();
+                img.color = Color.grey;
+            }
+                       
+        }
+    }
+
+
+
+
 }

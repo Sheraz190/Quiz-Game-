@@ -44,6 +44,20 @@ public class GameManager : MonoBehaviour
         GiveQuestion();
     }
 
+    private bool CheckifNextLevelUnlocked()
+    {
+        int num = SaveManager.Instance.GetUnlockedLevels();
+        for(int i=1;i<+num;i++)
+        {
+            if(_currentLevelNumber+1==num)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     private void LoadQuestions()
     {
         questionList.Clear();
@@ -71,6 +85,7 @@ public class GameManager : MonoBehaviour
         Answers ans = SelectAnswer(selectedAnswer);
         if (ans.isCorrect)
         {
+            _correctAnswers++;
             if (_currentQuestionNo == 10)
             {
                 OnLevelCompleted();
@@ -90,8 +105,9 @@ public class GameManager : MonoBehaviour
         GamePlayPanel.Instance.TurnNextButtonOff();
     }
 
-    private void OnNextLevel()
+    public void OnNextLevel()
     {
+        _currentLevelNumber++;
         ResetAllData();
         GetNextLevelType();
     }
@@ -112,19 +128,25 @@ public class GameManager : MonoBehaviour
     {
         if (_correctAnswers < 6)
         {
-            UIManager.Instance.TurnOnRetryPanel();
-            return;
+           UIManager.Instance.TurnOnRetryPanel();
+           return;
         }
-        _currentLevelNumber++;
+        if(_correctAnswers>6&&_correctAnswers<10)
+        {
+            UIManager.Instance.Setcolors(2);
+        }
+        if(_correctAnswers==10)
+        {
+            UIManager.Instance.Setcolors(3);
+        }
+        
         if (_currentLevelNumber > 10)
         {
-            AddLogger.DisplayLog("Level Ends Game finish");
             UIManager.Instance.OnGameComplete();
             return;
         }
-        SaveManager.Instance.SetUnlockedLevel(_currentLevelNumber);
+        SaveManager.Instance.SetUnlockedLevel(_currentLevelNumber+1);
         UIManager.Instance.OnLevelCompletedScreen();
-        OnNextLevel();
     }
 
     private void OnCorrectAnswer()
@@ -138,7 +160,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         _currentQuestionNo++;
         GiveQuestion();
-        _correctAnswers++;
         GamePlayPanel.Instance.ResetCheckBox();
     }
 
