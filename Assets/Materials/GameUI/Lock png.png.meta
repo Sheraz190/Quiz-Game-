@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 28a42bf2eae3d4042abf98312e64668a
+guid: 4343e158f34acdb4ea82e5155af8a648
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5153523313097400493
-    second: pngegg (1)_0
+      213: -8708608994994583028
+    second: Lock png_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pngegg (1)_0
+      name: Lock png_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 764
-        height: 980
+        x: 189
+        y: 125
+        width: 647
+        height: 771
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 35f922de9d10b78b0800000000000000
-      internalID: -5153523313097400493
+      spriteID: c0a839d524ec42780800000000000000
+      internalID: -8708608994994583028
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pngegg (1)_0: -5153523313097400493
+      Lock png_0: -8708608994994583028
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

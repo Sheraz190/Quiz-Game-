@@ -575,16 +575,16 @@ MonoBehaviour:
     levelNumber: 6
   - levelType: 6
     questions:
-    - questionText: LandMark
+    - questionText: Faisal Masjid is located in?
       answers:
       - answer: Minar-e-Pakistan
-        isCorrect: 1
+        isCorrect: 0
       - answer: Badshahi Mosque
         isCorrect: 0
       - answer: Lahore Fort
         isCorrect: 0
       - answer: Faisal Mosque
-        isCorrect: 0
+        isCorrect: 1
     - questionText: Faisal Mosque is located in which city?
       answers:
       - answer: Lahore

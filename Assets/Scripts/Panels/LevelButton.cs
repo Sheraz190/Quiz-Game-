@@ -8,7 +8,16 @@ public class LevelButton : MonoBehaviour
     public LevelTypes levelType;
     [SerializeField]private GameObject lockIcon;
     [SerializeField] private int levelNumber;
+    [SerializeField] private Button myButton;
     #endregion
+
+    private void Start()
+    {
+        ColorBlock cb = myButton.colors;
+        cb.disabledColor = cb.normalColor;
+        myButton.colors = cb;
+    }
+
     public void OnLevelSelected()
     {
         GameManager.Instance.GetType(levelType);
@@ -19,14 +28,12 @@ public class LevelButton : MonoBehaviour
     public void SetupLockButton()
     {
         lockIcon.SetActive(true);
+        myButton.interactable = false;
     }
 
     public void SetUpUnlockButton()
     {
         lockIcon.SetActive(false);
+        myButton.interactable = true;
     }
-
-   
-
-
 }
