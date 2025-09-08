@@ -20,10 +20,8 @@ public enum LevelTypes
 [Serializable]
 public class Questions
 {
-
     public string questionText;
     public List<Answers> answers;
-
 }
 
 [Serializable]
@@ -38,6 +36,7 @@ public class LevelData
 {
     public LevelTypes levelType;
     public List<Questions> questions;
+    public int levelNumber;
 }
 
 [CreateAssetMenu(fileName = "Levels Data", menuName = "Quiz Game/Levels Data")]
