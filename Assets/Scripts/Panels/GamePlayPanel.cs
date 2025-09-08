@@ -129,4 +129,10 @@ public class GamePlayPanel : MonoBehaviour
     {
         nextButton.interactable = false;
     }
+
+
+    private void StartGame()
+    {
+        AddLogger.DisplayErrorLog("Error on start game");
+    }
 }
