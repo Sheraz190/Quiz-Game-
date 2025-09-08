@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using DG.Tweening;
 public class UIManager : MonoBehaviour
 {
     #region Variables/Game Objects 
@@ -12,6 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject retryScreen;
     [SerializeField] private GameObject nextLevelScreen;
     [SerializeField] private GameObject exitScreen;
+    [SerializeField] private GameObject refrenceImage;
     [SerializeField] private List<GameObject> stars = new List<GameObject>();
     #endregion
 
@@ -109,16 +111,20 @@ public class UIManager : MonoBehaviour
     {
         TurnAllScreensOff();
         mainMenu.SetActive(true);
+        RotateImage();
+    }
+
+    private void RotateImage()
+    {
+       refrenceImage.transform.DORotate(new Vector3(0, 0, 360), 0.75f,RotateMode.FastBeyond360);
     }
 
     public void Setcolors(int num)
     {
-        AddLogger.DisplayLog("MEthod called");
         for(int i=0;i<3;i++)
         {
             if(i<num)
             {
-                AddLogger.DisplayLog("MEthod called");
                 Image img = stars[i].GetComponent<Image>();
                 img.color = Color.red;
             }

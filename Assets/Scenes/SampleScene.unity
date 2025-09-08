@@ -19189,7 +19189,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704840463}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19290,6 +19290,7 @@ MonoBehaviour:
   retryScreen: {fileID: 1933348422}
   nextLevelScreen: {fileID: 1508863200}
   exitScreen: {fileID: 1222500527}
+  refrenceImage: {fileID: 1704840463}
   stars:
   - {fileID: 1798211498}
   - {fileID: 420705613}

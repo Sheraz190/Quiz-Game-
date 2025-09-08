@@ -19,6 +19,7 @@ public class GamePlayPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI queNoText;
     private string _selectedText;
     public Button selectedButton;
+    private float _typingSpeed = 0.025f;
     #endregion
 
     private void Awake()
@@ -40,11 +41,45 @@ public class GamePlayPanel : MonoBehaviour
         ResetButtons();
         queNoText.text = " ";
         queNoText.text = ""+num;
-        quesText.text = ques;
+        StopAllCoroutines();
+        StartCoroutine(TypeText(ques, options));
+    }
+
+    private IEnumerator TypeText(string FullText, List<string> options)
+    {
+        quesText.text = " ";
+        foreach(char c in FullText)
+        {
+            quesText.text += c;
+            yield return new WaitForSeconds(_typingSpeed);
+        }
+        SetOptions(options);
+    }
+
+    private void SetOptions(List<string> options)
+    {
         for (int i = 0; i < options.Count; i++)
         {
             buttons[i].SetActive(true);
-            optionsText[i].text = options[i];
+        }
+        StartCoroutine(OptionsLoop(options));
+    }
+
+    private IEnumerator OptionsLoop(List<string> options)
+    {
+        for (int i = 0; i < options.Count; i++)
+        {
+            StartCoroutine(TypeOptions(options[i], optionsText[i]));
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+    private IEnumerator TypeOptions(string option,TextMeshProUGUI optionText)
+    {
+        optionText.text = "";
+        foreach(char c in option)
+        {
+            optionText.text += c;
+            yield return new WaitForSeconds(_typingSpeed);
         }
     }
 

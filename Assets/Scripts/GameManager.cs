@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
             string question = questionList[_currentQuestionNo - 1].questionText;
             List<string> answersArray = GetAnswerOfQuestion(questionList[_currentQuestionNo - 1]);
             GamePlayPanel.Instance.ShowNextQuestion(question, answersArray, _currentQuestionNo);
+            question = " ";
         }
     }
 
