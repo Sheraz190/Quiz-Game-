@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject nextLevelScreen;
     [SerializeField] private GameObject exitScreen;
     [SerializeField] private GameObject refrenceImage;
+    [SerializeField] private GameObject unlockPanel;
     [SerializeField] private List<GameObject> stars = new List<GameObject>();
     #endregion
 
@@ -68,7 +69,8 @@ public class UIManager : MonoBehaviour
     }
 
     public void OnLevelCompletedScreen()
-    { 
+    {
+        unlockPanel.SetActive(false);
         nextLevelScreen.SetActive(true);
     }
 
@@ -78,6 +80,12 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.OnNextLevel();
         GameManager.Instance.StartQuiz();
     }
+
+    public void TurnOnUnlockPanel()
+    {
+        unlockPanel.SetActive(true);
+    }
+
 
     public void OnGameComplete()
     {

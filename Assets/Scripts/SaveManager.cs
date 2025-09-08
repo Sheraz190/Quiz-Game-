@@ -20,7 +20,7 @@ public class SaveManager : MonoBehaviour
 
     private void Start()
     {
-        if(!PlayerPrefs.HasKey(_unlockedLEvels))
+        if (!PlayerPrefs.HasKey(_unlockedLEvels))
         {
             SetUnlockedLevel(1);
         }

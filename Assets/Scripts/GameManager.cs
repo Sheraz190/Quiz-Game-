@@ -44,18 +44,7 @@ public class GameManager : MonoBehaviour
         GiveQuestion();
     }
 
-    private bool CheckifNextLevelUnlocked()
-    {
-        int num = SaveManager.Instance.GetUnlockedLevels();
-        for(int i=1;i<+num;i++)
-        {
-            if(_currentLevelNumber+1==num)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+  
 
 
     private void LoadQuestions()
@@ -141,13 +130,36 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.Setcolors(3);
         }
         
-        if (_currentLevelNumber > 10)
+        if (_currentLevelNumber >= 10)
         {
             UIManager.Instance.OnGameComplete();
             return;
         }
-        SaveManager.Instance.SetUnlockedLevel(_currentLevelNumber+1);
+        if(!CheckifNextLevelUnlocked())
+        {
+           StartCoroutine(UnlockMethod());
+        }
+    }
+
+    private IEnumerator UnlockMethod()
+    {
+        UIManager.Instance.TurnOnUnlockPanel();
+        yield return new WaitForSeconds(2.5f);
+        SaveManager.Instance.SetUnlockedLevel(_currentLevelNumber + 1);
         UIManager.Instance.OnLevelCompletedScreen();
+    }
+
+    private bool CheckifNextLevelUnlocked()
+    {
+        int num = SaveManager.Instance.GetUnlockedLevels();
+        for (int i = 1; i < +num; i++)
+        {
+            if (_currentLevelNumber + 1 == num)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void OnCorrectAnswer()
