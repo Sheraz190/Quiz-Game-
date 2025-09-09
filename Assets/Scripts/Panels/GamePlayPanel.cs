@@ -61,6 +61,7 @@ public class GamePlayPanel : MonoBehaviour
     {
         for (int i = 0; i < options.Count; i++)
         {
+            buttons[i].GetComponent<Button>().interactable = false;
             buttons[i].SetActive(true);
         }
         StartCoroutine(OptionsLoop(options));
@@ -71,7 +72,16 @@ public class GamePlayPanel : MonoBehaviour
         for (int i = 0; i < options.Count; i++)
         {
             StartCoroutine(TypeOptions(options[i], optionsText[i]));
-            yield return new WaitForSeconds(0.1f);
+        }
+        yield return new WaitForSeconds(0.5f);
+        TurnButtonsTrue(options);
+    }
+
+    private void TurnButtonsTrue(List<string> options)
+    {
+        for(int i=0;i<options.Count;i++)
+        {
+            buttons[i].GetComponent<Button>().interactable = true;
         }
     }
     private IEnumerator TypeOptions(string option,TextMeshProUGUI optionText)

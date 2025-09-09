@@ -17,16 +17,10 @@ public class Settingspopup : MonoBehaviour
     private void MoveLevelPopUp(int valX,int valY,float scaleX,float scaleY)
     {
         Sequence seq = DOTween.Sequence();
-        seq.Join(settingPopup.GetComponent<RectTransform>().DOAnchorPos(new Vector3(valX, valY, 0), 0.75f));
-        seq.Join(settingPopup.GetComponent<RectTransform>().DOScale(new Vector3(scaleX, scaleY, 1), 0.75f));
+        seq.Join(settingPopup.GetComponent<RectTransform>().DOAnchorPos(new Vector3(valX, valY, 0), 0.25f));
+        seq.Join(settingPopup.GetComponent<RectTransform>().DOScale(new Vector3(scaleX, scaleY, 1), 0.25f));
     }
 
-    private void ResetPostion()
-    {
-        RectTransform rect = settingPopup.GetComponent<RectTransform>();
-        settingPopup.GetComponent<RectTransform>().anchoredPosition = new Vector3(-425,900, 0);
-        settingPopup.GetComponent<RectTransform>().localScale = new Vector3(0.2f, 0.2f, 0);
-    }
 
     public void OnCrossButtonClick()
     {
@@ -36,8 +30,7 @@ public class Settingspopup : MonoBehaviour
     private IEnumerator ToDoCrossButton()
     {
         MoveLevelPopUp(-425,900,0.2f,0.2f);
-        yield return new WaitForSeconds(0.55f);
-        //ResetPostion();
+        yield return new WaitForSeconds(0.23f);
         settingsPanel.SetActive(false);
     }
 }

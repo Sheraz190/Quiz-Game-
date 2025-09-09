@@ -14,7 +14,7 @@ public class RetryPopup : MonoBehaviour
 
     private void MoveLevelPopUp(int val)
     {
-        retryPopup.GetComponent<RectTransform>().DOAnchorPos(new Vector3(val, 0, 0), 1.25f);
+        retryPopup.GetComponent<RectTransform>().DOAnchorPos(new Vector3(val, 0, 0), 0.4f).SetEase(Ease.OutBounce);
     }
 
     private void ResetPostion()

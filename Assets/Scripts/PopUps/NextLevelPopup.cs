@@ -16,7 +16,7 @@ public class NextLevelPopup : MonoBehaviour
 
     private void MoveLevelPopUp(int val)
     {
-        levelPopUp.GetComponent<RectTransform>().DOAnchorPos(new Vector3(val, 0, 0), 1.25f);
+        levelPopUp.GetComponent<RectTransform>().DOAnchorPos(new Vector3(val, 0, 0), 0.4f).SetEase(Ease.OutBounce);
     }
 
     private void ResetPostion(GameObject obj)
@@ -33,7 +33,7 @@ public class NextLevelPopup : MonoBehaviour
     private IEnumerator ToDoOnRetry()
     {
         MoveLevelPopUp(-950);
-        yield return new WaitForSeconds(1.75f);
+        yield return new WaitForSeconds(0.5f);
         ResetPostion(levelPopUp);
         UIManager.Instance.OnRetryButtonClick();
        

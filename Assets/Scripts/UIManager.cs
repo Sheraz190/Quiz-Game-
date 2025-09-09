@@ -81,7 +81,6 @@ public class UIManager : MonoBehaviour
         unlockPanel.SetActive(true);
     }
 
-
     public void OnGameComplete()
     {
         exitScreen.SetActive(true);
