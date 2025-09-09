@@ -3,10 +3,12 @@ using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.InputSystem;
 
-public class TestScript : MonoBehaviour
+public class UnlockPanel : MonoBehaviour
 {
+    #region Variables
     [SerializeField] private GameObject hookImage;
     [SerializeField] private GameObject congratsText;
+    #endregion
     private void OnEnable()
     {
         RotateImage();
@@ -14,9 +16,8 @@ public class TestScript : MonoBehaviour
 
     private void RotateImage()
     {
-        AddLogger.DisplayLog("Image rotate method called");
         Sequence seq = DOTween.Sequence();
-        seq.Append(congratsText.transform.DOScale(new Vector3(2.75f, 2.75f, 0), 1.5f));
+        seq.Append(congratsText.transform.DOScale(new Vector3(2f, 2f, 0), 1.5f));
         seq.Append(hookImage.GetComponent<RectTransform>().DOLocalMove(new Vector3(0, 75, 0), 0.25f));
         seq.Append(hookImage.GetComponent<RectTransform>().DORotate(new Vector3(0, 75, 0), 0.25f));
         seq.Append(hookImage.GetComponent<RectTransform>().DORotate(new Vector3(0, 0, 0), 1.0f));

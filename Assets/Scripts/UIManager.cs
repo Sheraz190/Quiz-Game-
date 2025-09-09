@@ -31,11 +31,6 @@ public class UIManager : MonoBehaviour
         settingsMenu.SetActive(true);
     }
 
-    public void OnSettingsCrossButtonClick()
-    {
-        settingsMenu.SetActive(false);
-    }
-
     public void OnStartButtonClick()
     {
         mainMenu.SetActive(false);
@@ -124,7 +119,7 @@ public class UIManager : MonoBehaviour
 
     private void RotateImage()
     {
-       refrenceImage.transform.DORotate(new Vector3(0, 0, 360), 0.75f,RotateMode.FastBeyond360);
+        refrenceImage.transform.DORotate(new Vector3(0, 0, 360), 0.75f, RotateMode.FastBeyond360);
     }
 
     public void Setcolors(int num)
@@ -144,8 +139,4 @@ public class UIManager : MonoBehaviour
                        
         }
     }
-
-
-
-
 }

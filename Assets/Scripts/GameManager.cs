@@ -135,9 +135,20 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.OnGameComplete();
             return;
         }
-        if(!CheckifNextLevelUnlocked())
+        NextLevelMethod();
+    }
+
+    private void NextLevelMethod()
+    {
+        AddLogger.DisplayLog("current level number is: " + _currentLevelNumber);
+        if (CheckifNextLevelUnlocked())
         {
-           StartCoroutine(UnlockMethod());
+            SaveManager.Instance.SetUnlockedLevel(_currentLevelNumber + 1);
+            UIManager.Instance.OnLevelCompletedScreen();
+        }
+        else
+        {
+            StartCoroutine(UnlockMethod());
         }
     }
 
@@ -152,7 +163,7 @@ public class GameManager : MonoBehaviour
     private bool CheckifNextLevelUnlocked()
     {
         int num = SaveManager.Instance.GetUnlockedLevels();
-        for (int i = 1; i < +num; i++)
+        for (int i = 1; i <= num; i++)
         {
             if (_currentLevelNumber + 1 == num)
             {

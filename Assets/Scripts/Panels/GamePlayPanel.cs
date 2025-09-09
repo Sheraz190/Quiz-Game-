@@ -35,6 +35,7 @@ public class GamePlayPanel : MonoBehaviour
         TurnNextButtonOff();
     }
 
+
     public void ShowNextQuestion(string ques, List<string> options, int num)
     {
         levelName.text = "" + GameManager.Instance.currentLevelType.ToString();
@@ -164,5 +165,4 @@ public class GamePlayPanel : MonoBehaviour
     {
         nextButton.interactable = false;
     }
-
 }

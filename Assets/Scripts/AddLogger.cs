@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class AddLogger : MonoBehaviour
 {
     public static void DisplayLog(string message)
