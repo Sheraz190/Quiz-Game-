@@ -12,6 +12,7 @@ public class NextLevelPopup : MonoBehaviour
     private void OnEnable()
     {
         MoveLevelPopUp(0);
+        AudioManager.Instance.PlayWinSound();
     }
 
     private void MoveLevelPopUp(int val)
@@ -34,6 +35,7 @@ public class NextLevelPopup : MonoBehaviour
     {
         MoveLevelPopUp(-950);
         yield return new WaitForSeconds(0.5f);
+        AudioManager.Instance.StopWinSound();
         ResetPostion(levelPopUp);
         UIManager.Instance.OnRetryButtonClick();
        
@@ -47,7 +49,8 @@ public class NextLevelPopup : MonoBehaviour
     private IEnumerator ToDoNextButton()
     {
         MoveLevelPopUp(-950);
-        yield return new WaitForSeconds(1.75f);
+        yield return new WaitForSeconds(0.5f);
+        AudioManager.Instance.StopWinSound();
         ResetPostion(levelPopUp);
         UIManager.Instance.OnNextLevelButtonClick();
     }
@@ -60,7 +63,8 @@ public class NextLevelPopup : MonoBehaviour
     private IEnumerator ToDoMainMenu()
     {
         MoveLevelPopUp(-950);
-        yield return new WaitForSeconds(1.75f);
+        yield return new WaitForSeconds(0.5f);
+        AudioManager.Instance.StopWinSound();
         ResetPostion(levelPopUp);
         UIManager.Instance.OnMainMenuClick();
     }

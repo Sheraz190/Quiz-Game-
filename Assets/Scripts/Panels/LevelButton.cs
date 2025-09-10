@@ -20,6 +20,7 @@ public class LevelButton : MonoBehaviour
 
     public void OnLevelSelected()
     {
+        AudioManager.Instance.PlayClickSound();
         GameManager.Instance.GetType(levelType);
         GameManager.Instance.StartQuiz();
         GameManager.Instance.GetCurrentLevelNumber(levelNumber);

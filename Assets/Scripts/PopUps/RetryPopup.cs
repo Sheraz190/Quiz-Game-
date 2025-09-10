@@ -10,6 +10,7 @@ public class RetryPopup : MonoBehaviour
     private void OnEnable()
     {
         MoveLevelPopUp(0);
+        AudioManager.Instance.PlayWinSound();
     }
 
     private void MoveLevelPopUp(int val)
@@ -30,7 +31,8 @@ public class RetryPopup : MonoBehaviour
     private IEnumerator ToDoOnRetry()
     {
         MoveLevelPopUp(-950);
-        yield return new WaitForSeconds(1.75f);
+        yield return new WaitForSeconds(0.5f);
+        AudioManager.Instance.StopWinSound();
         ResetPostion();
         UIManager.Instance.OnRetryButtonClick();
     }
@@ -43,7 +45,8 @@ public class RetryPopup : MonoBehaviour
     private IEnumerator ToDoMainMenu()
     {
         MoveLevelPopUp(-950);
-        yield return new WaitForSeconds(1.75f);
+        yield return new WaitForSeconds(0.5f);
+        AudioManager.Instance.StopWinSound();
         ResetPostion();
         UIManager.Instance.OnMainMenuClick();
     }

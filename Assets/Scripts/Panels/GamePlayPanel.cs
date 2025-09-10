@@ -49,11 +49,13 @@ public class GamePlayPanel : MonoBehaviour
     private IEnumerator TypeText(string FullText, List<string> options)
     {
         quesText.text = " ";
+        AudioManager.Instance.PlayTypingSound();
         foreach(char c in FullText)
         {
             quesText.text += c;
             yield return new WaitForSeconds(_typingSpeed);
         }
+        AudioManager.Instance.StopTypingSound();
         SetOptions(options);
     }
 
@@ -69,11 +71,13 @@ public class GamePlayPanel : MonoBehaviour
 
     private IEnumerator OptionsLoop(List<string> options)
     {
+        AudioManager.Instance.PlayTypingSound();
         for (int i = 0; i < options.Count; i++)
         {
             StartCoroutine(TypeOptions(options[i], optionsText[i]));
         }
         yield return new WaitForSeconds(0.5f);
+        AudioManager.Instance.StopTypingSound();
         TurnButtonsTrue(options);
     }
 
