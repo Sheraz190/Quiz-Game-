@@ -106,6 +106,7 @@ public class UIManager : MonoBehaviour
     {
         TurnAllScreensOff();
         levelSelectionScreen.SetActive(true);
+        GamePlayPanel.Instance.ResetButtons();
         LevelsPanel.Instance.SetUnlockLevels();
     }
 

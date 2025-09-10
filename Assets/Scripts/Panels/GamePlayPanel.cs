@@ -35,13 +35,12 @@ public class GamePlayPanel : MonoBehaviour
         TurnNextButtonOff();
     }
 
-
     public void ShowNextQuestion(string ques, List<string> options, int num)
     {
         levelName.text = "" + GameManager.Instance.currentLevelType.ToString();
         ResetButtons();
         queNoText.text = " ";
-        queNoText.text = ""+num;
+        queNoText.text = "" + num;
         StopAllCoroutines();
         StartCoroutine(TypeText(ques, options));
     }
@@ -50,7 +49,7 @@ public class GamePlayPanel : MonoBehaviour
     {
         quesText.text = " ";
         AudioManager.Instance.PlayTypingSound();
-        foreach(char c in FullText)
+        foreach (char c in FullText)
         {
             quesText.text += c;
             yield return new WaitForSeconds(_typingSpeed);
@@ -83,28 +82,29 @@ public class GamePlayPanel : MonoBehaviour
 
     private void TurnButtonsTrue(List<string> options)
     {
-        for(int i=0;i<options.Count;i++)
+        for (int i = 0; i < options.Count; i++)
         {
             buttons[i].GetComponent<Button>().interactable = true;
         }
     }
-    private IEnumerator TypeOptions(string option,TextMeshProUGUI optionText)
+    private IEnumerator TypeOptions(string option, TextMeshProUGUI optionText)
     {
         optionText.text = "";
-        foreach(char c in option)
+        foreach (char c in option)
         {
             optionText.text += c;
             yield return new WaitForSeconds(_typingSpeed);
         }
     }
 
-    private void ResetButtons()
+    public void ResetButtons()
     {
         for (int i = 0; i < buttons.Count; i++)
         {
             buttons[i].SetActive(false);
             optionsText[i].text = " ";
         }
+        ResetButtonImages();
     }
 
     private void ResetButtonImages()
@@ -154,7 +154,7 @@ public class GamePlayPanel : MonoBehaviour
 
     public void MoveCheckBox(bool condition)
     {
-        if(condition)
+        if (condition)
         {
             correctCheckBox.SetActive(true);
             return;
